@@ -1,50 +1,40 @@
-# Welcome to your Expo app 👋
+# Welcome to LegislAI
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
+US Legislation on Artificial Intelligence has far reaching effects for private and public infrastructure. Our AI Legislation Tracker, LegislAI, is a tool for monitoring, analyzing, and visualizing the effects of AI laws, bills, and policies from a statewide and nationwide perspective. The tool aims to help researchers, policymakers, and the public understand how AI regulation is evolving across jurisdictions.
+
+## Our Tech Stack
+
+- Frontend: React Native + Expo, D3.js for visualizations
+
+- Backend: FastAPI/Flask for API endpoints
+
+- Data: TopoJSON/GeoJSON for maps, legislative APIs for bill data
+
 ## Get started
 
-1. Install dependencies
+### Prerequisites
 
-   ```bash
-   npm install
-   ```
+- [Download Node.js!](https://nodejs.org/en)
+- ensure that node is installed and ensure the node package manager is there as well (test `node -v` and test `npm -v`)
+- ensure that the react javascript framework is on your computer
 
-2. Start the app
+## Client Construction
 
-   ```bash
-   npx expo start
-   ```
+to setup the client, navigate to the project directory: `../../client`. Or out of the server folder using `cd ../` and into the client folder using `cd client`. After, entering the project ensure the following dependencies are installed:
+[Node.js](https://nodejs.org/en)
+> Note: You can check that Node.js and NPM are installed using `npm -v` and `node -v`
 
-In the output, you'll find options to open the app in a
+The client dependencies are installed using `npm install` in the client directory
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Once you've installed the client side dependencies, start the project using the command `npx expo start` to run the project frontend, and once again `fastapi dev main.py` in a python virtual environment in the server directory to view the entire project.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Server Construction
 
-## Get a fresh project
+to setup the application server, navigate to the server folder of the project directory using `cd ../../server`
+> Note: Ensure you have python and pip installed in order to run the dependencies
 
-When you're ready, run:
+Once you've navigated to the directory download the python dependencies necessary create a virtual environment (`python -m venv env`) and start the virtual environment (`source venv/bin/activate` or `.venv\Scripts\Activate` for Windows) to begin executing the server. Use the command:
+`pip install -r requirements.txt` to download the required dependencies
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.

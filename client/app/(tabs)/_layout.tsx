@@ -1,4 +1,5 @@
-import { Tabs } from 'expo-router';
+import { Tabs, withLayoutContext } from 'expo-router';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React from 'react';
 
 import { HapticTab } from '@/components/haptic-tab';
@@ -6,30 +7,35 @@ import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
+const TopTab = createMaterialTopTabNavigator();
+const TopTabs = withLayoutContext(TopTab.Navigator);
+
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-
+  
   return (
-    <Tabs
+    <TopTabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
+        tabBarIndicatorStyle: { backgroundColor: Colors[colorScheme ?? 'light'].tint },
+        tabBarStyle: { backgroundColor: Colors[colorScheme ?? 'light'].background },
+        tabBarPressColor: Colors[colorScheme ?? 'light'].tint + '33',
+        tabBarShowIcon: true,
       }}>
-      <Tabs.Screen
+      <TopTabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color }: {color: string}) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
-      <Tabs.Screen
+      <TopTabs.Screen
         name="explore"
         options={{
           title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ color }: {color: string}) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
         }}
       />
-    </Tabs>
+    </TopTabs>
   );
 }
