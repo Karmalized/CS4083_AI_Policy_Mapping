@@ -87,7 +87,7 @@ async def get_ai_senate_bills(congress: int = 119):
                 "limit": 250,
                 "api_key": API,
             }
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=30) as client:
         tasks = [fetch_page(endpoint, client, offset=params["limit"] * i, limit=params["limit"]) for i in range(num_pages)]
         results = await asyncio.gather(*tasks)
 
@@ -121,7 +121,7 @@ async def get_ai_house_bills(congress: int = 119):
                 "limit": 250,
                 "api_key": API,
             }
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=30) as client:
         
             tasks = [fetch_page(endpoint, client, offset=params["limit"] * i, limit=params["limit"]) for i in range(num_pages)]
             results = await asyncio.gather(*tasks)

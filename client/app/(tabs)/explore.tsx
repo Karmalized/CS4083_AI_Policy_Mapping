@@ -12,15 +12,34 @@ import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
 
+// Define TypeScript interfaces for bill data
+interface Bill {
+  congress: number;
+  latestAction: Action;
+  number: string;
+  originChamber: string;
+  originChamberCode: string;
+  title: string;
+  type: string;
+  updateDate: string;
+  updateDateIncludingText: string;
+  url: string;
+}
+//TypeScript interface for legislative actions
+interface Action {
+  actionDate: string;
+  text: string;
+}
+
 export default function TabTwoScreen() {
 
-  const [houseBillsData, setHouseBillsData] = React.useState([]);
-  const [senateBillsData, setSenateBillsData] = React.useState([]);
+  const [houseBillsData, setHouseBillsData] = React.useState<Bill[]>([]);
+  const [senateBillsData, setSenateBillsData] = React.useState<Bill[]>([]);
 
   React.useEffect(() => {
-  async function loadStreamedBills() {
+  async function loadStreamedHouseBills() {
     const response = await fetch("http://127.0.0.1:8000/stream-ai-house-bills?congress=119");
-    const reader = response.body.getReader();
+    const reader = response.body!.getReader();
     const decoder = new TextDecoder("utf-8");
     let buffer = "";
 
@@ -30,7 +49,7 @@ export default function TabTwoScreen() {
 
       buffer += decoder.decode(value, { stream: true });
       const lines = buffer.split("\n");
-      buffer = lines.pop();
+      buffer = lines.pop() || "";
 
       for (const line of lines) {
         if (line.trim()) {
@@ -40,8 +59,35 @@ export default function TabTwoScreen() {
       }
     }
   }
-  loadStreamedBills();
+
+  async function loadStreamedSenateBills() {
+    const response = await fetch("http://127.0.0.1:8000/stream-ai-senate-bills?congress=119");
+    const reader = response.body!.getReader();
+    const decoder = new TextDecoder("utf-8");
+    let buffer = "";
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split("\n");
+      buffer = lines.pop() || "";
+
+      for (const line of lines) {
+        if (line.trim()) {
+          const bill = JSON.parse(line);
+          setSenateBillsData(prev => [...prev, bill]);
+        }
+      }
+    }
+  }
+
+  loadStreamedHouseBills();
+  loadStreamedSenateBills();
 }, []);
+
+
 
 
   return (
