@@ -30,7 +30,33 @@ export default function WorldMap() {
           .attr("d", pathGenerator as any)
           .attr("fill", "#69b3a2")
           .attr("stroke", "#fff")
-          .attr("stroke-width", 0.5);
+          .attr("stroke-width", 0.5)
+          .on("mouseover", function(event, d) {
+            const toolWidth = 150;
+            const toolHeight = 50;
+            const screenWidth = svgRef.current?.getBoundingClientRect().width || 0;
+            const screenHeight = svgRef.current?.getBoundingClientRect().height || 0;
+
+            let [x, y] = d3.pointer(event);
+            if (x + toolWidth > screenWidth) {
+              x = screenWidth - toolWidth - 10;
+            }
+            if (y + toolHeight > screenHeight) {
+              y = screenHeight - toolHeight - 10;
+            }
+
+            d3.select(this).attr("fill", "#ffcc00");
+
+            d3.select("#tool")
+              .style("left", x + "px")
+              .style("top", y + "px")
+              .style("display", "block")
+              .html(`<strong>Country:</strong> ${d.properties?.name || null}`);
+          })
+          .on("mouseout", function() {
+            d3.select(this).attr("fill", "#69b3a2");
+            d3.select("#tool").style("display", "none");
+          });
       });
       
       const zoom = d3.zoom<SVGSVGElement, unknown>()
@@ -41,17 +67,19 @@ export default function WorldMap() {
         });
 
       svg.call(zoom as any);
-
-      svg.selectAll(".country")
-        .on("mouseover", function() {
-          d3.select(this).attr("fill", "#ffcc00");
-        })
-        .on("mouseout", function() {
-          d3.select(this).attr("fill", "#69b3a2");
-        });
   }, []);
 
   return (
+    <>
     <svg ref={svgRef} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet"></svg>
+    <div id="tool" style={{
+      position: 'absolute',
+      background: 'white',
+      padding: '4px',
+      border: '1px solid black',
+      pointerEvents: 'none',
+      display: 'none',
+    }}></div>
+    </>
   );
     };
