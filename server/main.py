@@ -1,8 +1,9 @@
 from typing import Union
-from loadenv import API_KEY
+from server.loadenv import API_KEY
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
+import server.policy.international as international
 import httpx
 import json
 import re
@@ -31,6 +32,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Router configurations
+app.include_router(international.router)
+
 # Get AI-related bills from Congress.gov API
 @app.get("/ai-congress-bills")
 async def get_ai_bills(congress: int = 119):

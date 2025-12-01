@@ -1,41 +1,72 @@
 import { Tabs, withLayoutContext } from 'expo-router';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import TabTwoScreen from './explore';
+import HomeScreen from '.';
+import { TouchableOpacity } from 'react-native';
+import TabThreeScreen from './world';
 
-const TopTab = createMaterialTopTabNavigator();
-const TopTabs = withLayoutContext(TopTab.Navigator);
+const TopTab = createNativeStackNavigator();
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   
   return (
-    <TopTabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        tabBarIndicatorStyle: { backgroundColor: Colors[colorScheme ?? 'light'].tint },
-        tabBarStyle: { backgroundColor: Colors[colorScheme ?? 'light'].background },
-        tabBarPressColor: Colors[colorScheme ?? 'light'].tint + '33',
-        tabBarShowIcon: true,
-      }}>
-      <TopTabs.Screen
+    <TopTab.Navigator>
+      <TopTab.Screen
         name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }: {color: string}) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
+        component={HomeScreen}
+        options={({navigation}) => ({
+          headerTitle: 'AI Policy Mapper',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: Colors[colorScheme ?? 'dark'].background,
+          },
+          headerLeft: () => (<TouchableOpacity onPress={() => navigation.navigate('index')} style={{marginLeft: 15}}>
+            <IconSymbol name="house.fill" size={28} color={Colors[colorScheme ?? 'dark'].text} />
+          </TouchableOpacity>),
+          headerRight: () => (
+            <>
+          <TouchableOpacity onPress={() => navigation.navigate('explore')} style={{marginRight: 15}}>
+            <IconSymbol name="magnifyingglass" size={28} color={Colors[colorScheme ?? 'dark'].text} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('world')} style={{marginRight: 15}}>
+            <IconSymbol name="globe.americas" size={28} color={Colors[colorScheme ?? 'dark'].text} />
+          </TouchableOpacity>
+          </>),
+        })}
       />
-      <TopTabs.Screen
+      <TopTab.Screen
         name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }: {color: string}) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
+        component={TabTwoScreen}
+        options={({navigation}) => ({
+          headerTitle: 'Explore AI Bills',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: Colors[colorScheme ?? 'dark'].background,
+          },
+          headerLeft: () => (<TouchableOpacity onPress={() => navigation.navigate('index')} style={{marginLeft: 15}}>
+            <IconSymbol name="arrow.left" size={28} color={Colors[colorScheme ?? 'dark'].text} />
+          </TouchableOpacity>)
+        })}
       />
-    </TopTabs>
+      <TopTab.Screen
+        name="world"
+        component={TabThreeScreen}
+        options={({navigation}) => ({
+          headerTitle: 'International AI Policies',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: Colors[colorScheme ?? 'dark'].background,
+          },
+          headerLeft: () => (<TouchableOpacity onPress={() => navigation.navigate('index')} style={{marginLeft: 15}}>
+            <IconSymbol name="arrow.left" size={28} color={Colors[colorScheme ?? 'dark'].text} />
+          </TouchableOpacity>)
+        })}
+      />
+    </TopTab.Navigator>
   );
 }
