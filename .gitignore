@@ -2,3 +2,6 @@
 
 # environment files
 .env
+
+# data files
+../server/policy/data/

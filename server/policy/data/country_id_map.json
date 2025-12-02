@@ -1,0 +1,362 @@
+{
+    "Argentina": {
+        "id": 5,
+        "code": "ARG",
+        "policyCount": 16
+    },
+    "Algeria": {
+        "id": 6,
+        "code": "DZA",
+        "policyCount": 1
+    },
+    "Armenia": {
+        "id": 8,
+        "code": "ARM",
+        "policyCount": 2
+    },
+    "Australia": {
+        "id": 9,
+        "code": "AUS",
+        "policyCount": 43
+    },
+    "Austria": {
+        "id": 10,
+        "code": "AUT",
+        "policyCount": 76
+    },
+    "Belgium": {
+        "id": 16,
+        "code": "BEL",
+        "policyCount": 94
+    },
+    "Bulgaria": {
+        "id": 25,
+        "code": "BGR",
+        "policyCount": 43
+    },
+    "Brazil": {
+        "id": 26,
+        "code": "BRA",
+        "policyCount": 14
+    },
+    "Canada": {
+        "id": 32,
+        "code": "CAN",
+        "policyCount": 15
+    },
+    "China (People\u2019s Republic of)": {
+        "id": 35,
+        "code": "CHN",
+        "policyCount": 22
+    },
+    "Chile": {
+        "id": 36,
+        "code": "CHL",
+        "policyCount": 11
+    },
+    "Colombia": {
+        "id": 37,
+        "code": "COL",
+        "policyCount": 40
+    },
+    "Costa Rica": {
+        "id": 40,
+        "code": "CRI",
+        "policyCount": 18
+    },
+    "Cyprus": {
+        "id": 43,
+        "code": "CYP",
+        "policyCount": 9
+    },
+    "Croatia": {
+        "id": 44,
+        "code": "HRV",
+        "policyCount": 32
+    },
+    "Czech Republic": {
+        "id": 45,
+        "code": "CZE",
+        "policyCount": 34
+    },
+    "Denmark": {
+        "id": 48,
+        "code": "DNK",
+        "policyCount": 42
+    },
+    "Egypt": {
+        "id": 53,
+        "code": "EGY",
+        "policyCount": 7
+    },
+    "Estonia": {
+        "id": 57,
+        "code": "EST",
+        "policyCount": 17
+    },
+    "Finland": {
+        "id": 61,
+        "code": "FIN",
+        "policyCount": 36
+    },
+    "France": {
+        "id": 62,
+        "code": "FRA",
+        "policyCount": 68
+    },
+    "Germany": {
+        "id": 66,
+        "code": "DEU",
+        "policyCount": 93
+    },
+    "Greece": {
+        "id": 68,
+        "code": "GRC",
+        "policyCount": 48
+    },
+    "Hungary": {
+        "id": 77,
+        "code": "HUN",
+        "policyCount": 28
+    },
+    "Iceland": {
+        "id": 78,
+        "code": "ISL",
+        "policyCount": 4
+    },
+    "India": {
+        "id": 79,
+        "code": "IND",
+        "policyCount": 39
+    },
+    "Indonesia": {
+        "id": 80,
+        "code": "IDN",
+        "policyCount": 2
+    },
+    "Ireland": {
+        "id": 82,
+        "code": "IRL",
+        "policyCount": 41
+    },
+    "Israel": {
+        "id": 84,
+        "code": "ISR",
+        "policyCount": 19
+    },
+    "Italy": {
+        "id": 85,
+        "code": "ITA",
+        "policyCount": 38
+    },
+    "Japan": {
+        "id": 87,
+        "code": "JPN",
+        "policyCount": 29
+    },
+    "Kazakhstan": {
+        "id": 89,
+        "code": "KAZ",
+        "policyCount": 8
+    },
+    "Kenya": {
+        "id": 90,
+        "code": "KEN",
+        "policyCount": 10
+    },
+    "Korea": {
+        "id": 92,
+        "code": "KOR",
+        "policyCount": 21
+    },
+    "Latvia": {
+        "id": 96,
+        "code": "LVA",
+        "policyCount": 50
+    },
+    "Lithuania": {
+        "id": 102,
+        "code": "LTU",
+        "policyCount": 34
+    },
+    "Luxembourg": {
+        "id": 103,
+        "code": "LUX",
+        "policyCount": 25
+    },
+    "Malaysia": {
+        "id": 106,
+        "code": "MYS",
+        "policyCount": 3
+    },
+    "Malta": {
+        "id": 109,
+        "code": "MLT",
+        "policyCount": 50
+    },
+    "Mauritius": {
+        "id": 112,
+        "code": "MUS",
+        "policyCount": 6
+    },
+    "Mexico": {
+        "id": 113,
+        "code": "MEX",
+        "policyCount": 21
+    },
+    "Morocco": {
+        "id": 119,
+        "code": "MAR",
+        "policyCount": 3
+    },
+    "Netherlands": {
+        "id": 125,
+        "code": "NLD",
+        "policyCount": 47
+    },
+    "New Zealand": {
+        "id": 126,
+        "code": "NZL",
+        "policyCount": 11
+    },
+    "Nigeria": {
+        "id": 129,
+        "code": "NGA",
+        "policyCount": 5
+    },
+    "Norway": {
+        "id": 131,
+        "code": "NOR",
+        "policyCount": 20
+    },
+    "Peru": {
+        "id": 138,
+        "code": "PER",
+        "policyCount": 18
+    },
+    "Poland": {
+        "id": 140,
+        "code": "POL",
+        "policyCount": 39
+    },
+    "Portugal": {
+        "id": 141,
+        "code": "PRT",
+        "policyCount": 75
+    },
+    "Romania": {
+        "id": 143,
+        "code": "ROU",
+        "policyCount": 39
+    },
+    "Rwanda": {
+        "id": 145,
+        "code": "RWA",
+        "policyCount": 6
+    },
+    "Saudi Arabia": {
+        "id": 152,
+        "code": "SAU",
+        "policyCount": 64
+    },
+    "Serbia": {
+        "id": 154,
+        "code": "SRB",
+        "policyCount": 21
+    },
+    "Singapore": {
+        "id": 157,
+        "code": "SGP",
+        "policyCount": 61
+    },
+    "Slovak Republic": {
+        "id": 158,
+        "code": "SVK",
+        "policyCount": 25
+    },
+    "Slovenia": {
+        "id": 159,
+        "code": "SVN",
+        "policyCount": 77
+    },
+    "South Africa": {
+        "id": 162,
+        "code": "ZAF",
+        "policyCount": 5
+    },
+    "Spain": {
+        "id": 164,
+        "code": "ESP",
+        "policyCount": 56
+    },
+    "Sweden": {
+        "id": 168,
+        "code": "SWE",
+        "policyCount": 54
+    },
+    "Switzerland": {
+        "id": 169,
+        "code": "CHE",
+        "policyCount": 6
+    },
+    "Thailand": {
+        "id": 173,
+        "code": "THA",
+        "policyCount": 10
+    },
+    "Tunisia": {
+        "id": 175,
+        "code": "TUN",
+        "policyCount": 7
+    },
+    "T\u00fcrkiye": {
+        "id": 179,
+        "code": "TUR",
+        "policyCount": 38
+    },
+    "Uganda": {
+        "id": 182,
+        "code": "UGA",
+        "policyCount": 3
+    },
+    "Ukraine": {
+        "id": 183,
+        "code": "UKR",
+        "policyCount": 39
+    },
+    "United Kingdom": {
+        "id": 184,
+        "code": "GBR",
+        "policyCount": 73
+    },
+    "United States": {
+        "id": 185,
+        "code": "USA",
+        "policyCount": 84
+    },
+    "Uruguay": {
+        "id": 186,
+        "code": "URY",
+        "policyCount": 7
+    },
+    "United Arab Emirates": {
+        "id": 187,
+        "code": "ARE",
+        "policyCount": 8
+    },
+    "Uzbekistan": {
+        "id": 188,
+        "code": "UZB",
+        "policyCount": 4
+    },
+    "Viet Nam": {
+        "id": 191,
+        "code": "VNM",
+        "policyCount": 7
+    },
+    "Zambia": {
+        "id": 193,
+        "code": "ZMB",
+        "policyCount": 2
+    }
+}
