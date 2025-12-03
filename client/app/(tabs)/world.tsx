@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 16,
-        backgroundColor: Platform.OS === 'web' ? '#f0f0f0' : 'transparent',
+        backgroundColor: Platform.OS === 'web' ? '#f0f0f0ff' : 'transparent',
     },
     headerImage: {
         width: '100%',
@@ -31,9 +31,7 @@ export default function TabThreeScreen() {
     />
     }>
       <ThemedText style={{fontSize: 24, fontFamily: 'System', marginBottom: 16, textAlign: 'center'}}>International AI Policy Map</ThemedText>
-      <ThemedView style={styles.container}>
         <WorldMap />
-      </ThemedView>
     </ParallaxScrollView>
   );
 }

@@ -17,6 +17,8 @@ class InternationalAgreement(BaseModel):
     startYear: int | None
     endYear: int | None
     gaiinCountry: dict | None
+    targetSectors: List[dict] | None
+    initiativeType: dict | None
     principles: List[dict]
 
 router = APIRouter(
@@ -30,7 +32,7 @@ num_of_countries = 195 # Total number of recognized countries
 
 BASE_URL = "https://oecd-ai.case-api.buddyweb.fr/policy-initiatives"  # Placeholder URL
 
-@router.get("obtainCountryMapping", response_model=dict)
+@router.get("/obtainCountryMapping", response_model=dict)
 async def obtain_country_map():
     """Fetch country IDs for international AI policy agreements.
     Returns:
@@ -51,6 +53,9 @@ async def obtain_country_map():
             count = r.get("total")
             for p in data:
                 country = p.get("gaiinCountry")
+                if country["id"] == 35:
+                    country_id_map["China"] = {"id": country["id"], "code": country["code"], "policyCount": count}
+                    break
                 if country["name"] not in country_id_map:
                     country_id_map[country["name"]] = {"id": country["id"], "code": country["code"], "policyCount": count}
                     break
@@ -64,7 +69,7 @@ async def obtain_country_map():
             raise HTTPException(status_code=500, detail=f"Error writing to file: {str(e)}")
         return country_id_map
 
-@router.get("callCountryMapping", response_model=dict)
+@router.get("/callCountryMapping", response_model=dict)
 async def call_country_map():
     """Fetch country IDs for international AI policy agreements.
     Returns:
@@ -87,6 +92,45 @@ async def get_country_codes():
     country_id_map = {c.numeric: c.name for c in pycountry.countries}
     return country_id_map
     
+@router.get("/countryPolicies/{id:int}")
+async def get_country_policies(id):
+    """Fetch AI Initiatives/Policies related to a specific country denoted by their ID
+    Returns:
+        A dictionary of legislative policy initiatives from a country denoted by their country ID
+    """
+    params = {"page": 1, "countryIds": id}
+    format_URL = f"{BASE_URL}"
+    timeout = httpx.Timeout(10.0, read=20.0)
+    policyData = []
+    async with httpx.AsyncClient(timeout=timeout) as client:
+        while True:
+            response = await client.get(format_URL, params=params)
+            data = response.json().get("data", [])
+
+            if not data:
+                break
+
+            for policy in data:
+                ia = InternationalAgreement(
+                    id=policy.get("id"),
+                    englishName=policy.get("englishName") or "",
+                    description=policy.get("description") or "",
+                    website=policy.get("website"),
+                    responsibleOrganization=policy.get("responsibleOrganization"),
+                    startYear=policy.get("startYear"),
+                    endYear=policy.get("endYear"),
+                    gaiinCountry=policy.get("gaiinCountry"),
+                    targetSectors=policy.get("targetSectors"),
+                    initiativeType=policy.get("initiativeType"),
+                    principles=policy.get("principles") or []
+                    )
+                policyData.append(ia)
+            
+            params["page"] += 1
+
+        return policyData
+                
+                    
     
 
 @router.get("/policycounts", response_model=dict)
