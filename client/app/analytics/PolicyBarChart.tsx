@@ -56,6 +56,7 @@ export default function PolicyBarChart({policies}: PolicyBarChartProps) {
     const styles = StyleSheet.create({
           texture: {
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center'
           }
@@ -149,8 +150,10 @@ export default function PolicyBarChart({policies}: PolicyBarChartProps) {
 
   return (
     <>
-    <ThemedText><h3 style={styles.texture}>AI Initiative Target Sectors by Frequency</h3></ThemedText>
-    <ThemedText><svg ref={svgRef} style={{backgroundColor: Platform.OS === 'web' ? '#2c237e28' : 'transparent'}}></svg></ThemedText>
+    <div style={styles.texture}>
+        <ThemedText><h3>AI Initiative Target Sectors by Frequency</h3></ThemedText>
+        <ThemedText><svg ref={svgRef} style={{backgroundColor: Platform.OS === 'web' ? '#2c237e28' : 'transparent'}}></svg></ThemedText>
+    </div>
     </>
   )
 }

@@ -66,7 +66,7 @@ export default function CountryAnalyticsPanel({code, name, data}: countryIdentit
 
   return (
     <div className="analytics-panel">
-        {name && (
+        {name && 
         <>
         <div style={styles.container}>
             <ThemedText ><h2>{name}</h2></ThemedText>
@@ -74,13 +74,14 @@ export default function CountryAnalyticsPanel({code, name, data}: countryIdentit
         </div>
         { data.length >= 1 &&
         <>
-        (<PolicyBarChart policies={data}/>
-        <PrinciplesPieChart policies={data} /> 
-        )
+        <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 100}}>
+            <PolicyBarChart policies={data}/>
+            <PrinciplesPieChart policies={data} /> 
+        </div>
         </>
         }
         </>
-        )}
+        }
     </div>
   )
 }
