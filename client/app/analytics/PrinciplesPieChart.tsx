@@ -3,6 +3,8 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import * as d3 from 'd3';
 import { Platform } from 'react-native';
+import { Collapsible } from '@/components/ui/collapsible';
+import { ThemedView } from '@/components/themed-view';
 
 interface Principle {
     id: number,
@@ -51,11 +53,19 @@ interface Principle {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center'
+            },
+            view: {
+            alignItems: 'center',
+            padding: 16,
+            width: '100%',
+            backgroundColor: Platform.OS === 'web' ? '#f0f0f0' : 'transparent',
             }
         });
 
 export default function PrinciplesTreemap({ policies }: PrinciplesTreemapProps) {
   const svgRef = React.useRef<SVGSVGElement | null>(null);
+
+  const [mapChartData, setChartData] = React.useState<{principle: string, count: number}[]>([]);
 
   React.useEffect(() => {
     const margins = { top: 20, right: 20, bottom: 20, left: 20 };
@@ -71,6 +81,8 @@ export default function PrinciplesTreemap({ policies }: PrinciplesTreemapProps) 
       ),
       ([principle, count]) => ({ principle, count })
     );
+
+    setChartData(chartData)
 
     const color = d3.scaleOrdinal(chartData.map(d => d.principle), d3.schemeTableau10)
 
@@ -151,6 +163,15 @@ export default function PrinciplesTreemap({ policies }: PrinciplesTreemapProps) 
             zIndex: 10
         }}></div>
         </ThemedText>
+        <ThemedView style={styles.view}>
+            <Collapsible title="Principles Shorthand">
+                {mapChartData.map(item => (
+                    <ThemedText>
+                        {item.principle}
+                    </ThemedText>
+                ))}
+            </Collapsible>
+        </ThemedView>
     </div>
     </>
   )
