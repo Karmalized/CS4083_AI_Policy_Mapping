@@ -35,6 +35,7 @@ Once you've installed the client side dependencies, start the project using the 
 to setup the application server, navigate to the server folder of the project directory using `cd ../../server`
 > Note: Ensure you have python and pip installed in order to run the dependencies
 
-Once you've navigated to the directory download the python dependencies necessary create a virtual environment (`python -m venv env`) and start the virtual environment (`source venv/bin/activate` or `.venv\Scripts\Activate` for Windows) to begin executing the server. Use the command:
-`pip install -r requirements.txt` to download the required dependencies
+Once you've navigated to the directory download the python dependencies necessary create a virtual environment (`python -m venv env`) and start the virtual environment (`source venv/bin/activate` or `venv\Scripts\Activate` for Windows) to begin executing the server. 
+
+Use the command: `pip install -r requirements.txt` to download the required dependencies. When your python virtual environment is running you want to enter: `fastapi dev main.py` in the virtual environment from the server directory to view the entire project.
 
