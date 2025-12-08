@@ -7,52 +7,9 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Link } from 'expo-router';
 import { View } from 'react-native';
-
-interface HubProfile {
-  login: string;
-  avatar_url: string;
-  html_url: string;
-  name: string;
-  bio: string;
-  followers: number;
-  public_repos: number;
-}
+import GithubProfile from './GithubProfile';
 
 export default function HomeScreen() {
-  const [profile, setProfile] = React.useState<HubProfile | null>(null);
-
-  React.useEffect(() => {
-    // Simulate fetching user profile data
-    const fetchProfile = async () => {
-      try {
-        const response = await fetch('https://api.github.com/users/Karmalized');
-        const data = await response.json();
-        console.log(data);
-        const fetchedProfile: HubProfile = {
-          login: data.login,
-          avatar_url: data.avatar_url,
-          html_url: data.html_url,
-          name: data.name,
-          bio: data.bio,
-          followers: data.followers,
-          public_repos: data.public_repos,
-        };
-      setProfile(fetchedProfile);
-    } catch (error) {
-        console.error('Error fetching profile:', error);
-      }
-    };
-
-    fetchProfile();
-  }, []);
-
-  if (!profile) {
-    return (
-      <ThemedView style={styles.container}>
-        <ThemedText>Loading profile...</ThemedText>
-      </ThemedView>
-    );
-  }
 
   return (
     <View style={{flex: 1, justifyContent: 'space-between'}}>
@@ -66,9 +23,9 @@ export default function HomeScreen() {
 
           />
         }>
-        <ThemedView style={styles.container}>
+        <ThemedView style={{display: 'flex', alignItems: 'center'}}>
           <ThemedText style={styles.title}>Welcome to the AI Policy Mapper</ThemedText>
-          <HelloWave />
+          <HelloWave/>
           <ThemedText style={styles.paragraph}>
             Explore the legislative landscape of artificial intelligence across the United States. Use the tabs above to navigate through different sections of the app.
           </ThemedText>
@@ -104,17 +61,12 @@ export default function HomeScreen() {
         </ThemedView>
 
         <ThemedView style={styles.container}>
-          <ThemedText style={styles.title}>Our Development Team</ThemedText>
+          <ThemedText style={styles.invertTitle}>Our Development Team</ThemedText>
           <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 16, gap: 12}}>
-            <ThemedText style={styles.title}>Contributors:</ThemedText>
-            <TouchableOpacity onPress={() => {Linking.openURL(profile.html_url)}}>
-              <Image
-              source={{ uri: profile.avatar_url }}
-              style={{ width: 50, height: 50, borderRadius: 50, marginBottom: 16, borderColor: '#000', borderWidth: 2 }}
-              contentFit="cover"
-              
-            />
-          </TouchableOpacity>
+            <ThemedText style={styles.invertTitle}>Contributors:</ThemedText>
+            <GithubProfile user='Karmalized'/>
+            <GithubProfile user='DakotaNatashaStaubach'/>
+            <GithubProfile user='Slade-roberts'/>
           </View>
         </ThemedView>
 

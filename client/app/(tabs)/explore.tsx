@@ -108,7 +108,7 @@ export default function TabTwoScreen() {
         <Collapsible title="House Bills">
           {houseBillsData.map((bill: any, index: number) => (
             <ThemedText key={index} style={styles.paragraph}>
-              {bill.title} - <ExternalLink href={bill.url}>View Bill</ExternalLink>
+              {bill.title}
             </ThemedText>
           ))}
         </Collapsible>
