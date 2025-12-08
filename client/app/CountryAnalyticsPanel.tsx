@@ -5,6 +5,7 @@ import { ThemedText } from '@/components/themed-text';
 import { symbol } from 'd3';
 import PolicyBarChart from './analytics/PolicyBarChart';
 import PrinciplesPieChart from './analytics/PrinciplesPieChart';
+import WordCloud from './analytics/WordCloud';
 
 interface countryIdentityProps {
         code: string;
@@ -77,6 +78,28 @@ export default function CountryAnalyticsPanel({code, name, data}: countryIdentit
         <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 100}}>
             <PolicyBarChart policies={data}/>
             <PrinciplesPieChart policies={data} /> 
+        </div>
+        <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 100}}>
+            <WordCloud data={data}/>
+            <div>
+            <ThemedText style={{textAlign: 'center'}}><h3>AI Initiative Listings</h3></ThemedText> 
+            <div style={{
+                maxHeight: '400px',
+                overflow: 'auto',
+                padding: '1opx',
+                borderRadius: '6px'
+            }}>
+            {data.map(policy => 
+                <div key={policy.id} style={{marginBottom: "12px"}}>
+                    <ThemedText>
+                    <h4 style={{margin: 0}}><a href={policy.website} target='_blank' rel='noopener nonreferrer'>{policy.englishName}</a></h4>
+                    <p style={{margin: "4px 0"}}>{policy.description}</p>
+                    <small>Start Year: {policy.startYear}</small>
+                    </ThemedText>
+                </div>
+            )}
+            </div>
+            </div>
         </div>
         </>
         }

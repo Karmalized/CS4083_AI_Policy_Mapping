@@ -100,6 +100,11 @@ export default function TabTwoScreen() {
 
       {<ThemedView style={styles.container}>
         <ThemedText style={styles.title}>Recent AI-Related Bills in Congress</ThemedText>
+        <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
+          <ThemedText>Total Bills: {senateBillsData.length + houseBillsData.length}</ThemedText>
+          <ThemedText>House Bills Collected: {houseBillsData.length}</ThemedText>
+          <ThemedText>Senate Bills Collected: {senateBillsData.length}</ThemedText>
+        </div>
         <Collapsible title="House Bills">
           {houseBillsData.map((bill: any, index: number) => (
             <ThemedText key={index} style={styles.paragraph}>
@@ -110,7 +115,7 @@ export default function TabTwoScreen() {
         <Collapsible title="Senate Bills">
           {senateBillsData.map((bill: any, index: number) => (
             <ThemedText key={index} style={styles.paragraph}>
-              {bill.title} - <ExternalLink href={bill.url}>View Bill</ExternalLink>
+              {bill.title}
             </ThemedText>
           ))}
         </Collapsible>
@@ -124,8 +129,7 @@ const styles = StyleSheet.create({
     flexGrow: 0,
     flexShrink: 0,
     flexBasis: 'auto',
-    padding: 16,
-    backgroundColor: Platform.OS === 'web' ? '#f0f0f0' : 'transparent',
+    padding: 16
   },
   headerImage: {
     width: '100%',

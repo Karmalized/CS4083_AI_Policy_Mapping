@@ -132,6 +132,9 @@ export default function HomeScreen() {
           <TouchableOpacity onPress={() => {Linking.openURL('https://www.caidp.org/')}}>
             <ThemedText style={styles.link}>Center for AI and Digital Policy</ThemedText>
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => {Linking.openURL('https://www.congress.gov/')}}>
+            <ThemedText style={styles.link}>Congress.gov Official Website</ThemedText>
+          </TouchableOpacity>
         </ThemedView>
 
       </ParallaxScrollView>
@@ -150,7 +153,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       padding: 16,
       width: '100%',
-      backgroundColor: Platform.OS === 'web' ? '#f0f0f0' : 'transparent',
+      backgroundColor: Platform.OS === 'web' ? '#333333' : 'transparent',
     },
     invertContainer: {
       alignItems: 'center',
@@ -198,7 +201,6 @@ const styles = StyleSheet.create({
     },
     footer: {
       padding: 10,
-      backgroundColor: Platform.OS === 'web' ? '#f0f0f0' : 'transparent',
       alignItems: 'center',
       justifyContent: 'center',
     },

@@ -9,6 +9,7 @@ import HomeScreen from '.';
 import { TouchableOpacity } from 'react-native';
 import TabThreeScreen from './world';
 import SVG, { Path } from 'react-native-svg';
+import { Platform } from 'react-native';
 
 const TopTab = createNativeStackNavigator();
 

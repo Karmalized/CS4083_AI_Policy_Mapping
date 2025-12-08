@@ -50,7 +50,6 @@ interface Principle {
 export default function PolicyBarChart({policies}: PolicyBarChartProps) {
 
     const [targetSector, setTargetSector] = React.useState<string[]>([]);
-    const sectorCounts: Record<string,number> = {}
     const svgRef = useRef<SVGSVGElement | null>(null);
 
     const styles = StyleSheet.create({
@@ -63,8 +62,14 @@ export default function PolicyBarChart({policies}: PolicyBarChartProps) {
       });
 
     React.useEffect(() => {
-          policies.forEach(policy => {policy.targetSectors?.forEach(sector => {sectorCounts[sector.name] = (sectorCounts[sector.name] || 0) + 1})})
-          console.log(sectorCounts)
+          const chartData = Array.from(
+                d3.rollup(
+                  policies.flatMap(p => p.targetSectors ?? []),
+                  v => v.length,
+                  pr => pr.name
+                ),
+                ([sector, count]) => ({ sector, count })
+              );
 
             const margins = { top: 20, right: 30, bottom: 65, left: 50 };
             const width = 600 - margins.left - margins.right;
@@ -79,11 +84,6 @@ export default function PolicyBarChart({policies}: PolicyBarChartProps) {
 
             const chartGroup = svg.append("g")
             .attr("transform", `translate(${margins.left},${margins.top})`);
-
-          const chartData = Object.entries(sectorCounts).map(([sector,count]) => ({
-            sector,
-            count
-          }))
 
           const xScale = d3.scaleBand<string>().domain(chartData.map(d => d.sector)).range([0,width]).padding(0.5);
           

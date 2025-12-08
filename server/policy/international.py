@@ -20,6 +20,7 @@ class InternationalAgreement(BaseModel):
     targetSectors: List[dict] | None
     initiativeType: dict | None
     principles: List[dict]
+    tags: List[dict] | None
 
 router = APIRouter(
     prefix="/policy/international",
@@ -122,7 +123,8 @@ async def get_country_policies(id):
                     gaiinCountry=policy.get("gaiinCountry"),
                     targetSectors=policy.get("targetSectors"),
                     initiativeType=policy.get("initiativeType"),
-                    principles=policy.get("principles") or []
+                    principles=policy.get("principles") or [],
+                    tags=policy.get("tags") or []
                     )
                 policyData.append(ia)
             
